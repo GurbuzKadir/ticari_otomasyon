@@ -1,0 +1,43 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+    @*<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link href="~/gallerytemp/thumbnail-gallery.css" rel="stylesheet" />
+
+    <div class="gallery-container">
+
+
+
+        <div class="tz-gallery">
+
+            <div class="row">
+
+                @foreach (var x in Model)
+                {
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a class="lightbox" href="@x.UrunGorsel">
+                                <img src="@x.UrunGorsel" alt="@x.Marka" style="height:350px;object-fit: cover;width:100%">
+                            </a>
+                            <div class="caption">
+                                <h3>@x.UrunAdi</h3>
+                                <p><b>Marka : </b><u>@x.Marka</u>, <b>Stok : </b><u>@x.Stok</u>, <b>Fiyat : </b><u>@x.SatisFiyat</u></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>

@@ -1,0 +1,56 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Departman>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<table id="departman" class="table table-striped" style="margin-top:20px">
+    <thead>
+        <tr>
+            @*<th>#</th>*@
+            <th>Departman Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    @foreach (var k in Model)
+    {
+        <tr>
+
+            @*<td>@k.DepartmanID</td>*@
+
+            <td>@k.DepartmanAdi</td>
+
+            @*<td><a href="/Departman/DepartmanSil/@k.DepartmanID" class="btn btn-danger">Sil</a></td>*@
+            <td>
+                @Html.ActionLink("Sil", "DepartmanSil", new { id = k.DepartmanID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })
+            </td>
+
+            <td><a href="/Departman/DepartmanGetir/@k.DepartmanID" class="btn btn-warning">Güncelle</a></td>
+
+            <td><a href="/Departman/DepartmanDetay/@k.DepartmanID" class="btn btn-info">Detay</a></td>
+
+        </tr>
+    }
+</table>
+<span>
+    <a href="/Departman/DepartmanEkle" class="btn btn-primary">Departman Ekle</a>
+</span>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#departman').dataTable({
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>

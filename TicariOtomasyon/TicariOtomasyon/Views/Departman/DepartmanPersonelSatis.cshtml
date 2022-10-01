@@ -1,0 +1,65 @@
+﻿@using TicariOtomasyon.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "DepartmanPersonelSatis";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Personel Satış</h2>
+<br />
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Personel adı : @ViewBag.p_adi <br /> Departman : @ViewBag.d_adi</li>
+</ol>
+<br />
+<table id="tbl_departman_personel_satis" class="table table-striped">
+    <thead>
+        <tr>
+            @*<th>#</th>*@
+            <th>Ürün</th>
+            <th>Cari</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Toplam</th>
+            <th>Tarih</th>
+            <th>Yazdır</th>
+        </tr>
+    </thead>
+    @foreach (var a in Model)
+    {
+        <tr>
+
+            @*<td>@a.SatisID</td>*@
+
+            <td>@a.Urun.UrunAdi</td>
+
+            <td>@a.Cariler.CariAd @a.Cariler.CariSoyad</td>
+
+            <td>@a.Fiyat</td>
+
+            <td>@a.Adet</td>
+
+            <td>@a.ToplamTutar</td>
+
+            <td>@Convert.ToDateTime(a.Tarih).ToString("dd/MM/yyyy")</td>
+
+            <td><a href="#" class="btn btn-primary">Yazdır</a></td>
+
+        </tr>
+    }
+</table>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl_departman_personel_satis').dataTable({
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>

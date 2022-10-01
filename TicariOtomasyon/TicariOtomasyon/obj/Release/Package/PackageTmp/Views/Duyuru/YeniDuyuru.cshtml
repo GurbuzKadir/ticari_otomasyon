@@ -1,0 +1,59 @@
+﻿@model TicariOtomasyon.Models.Siniflar.Duyuru
+
+@{
+    ViewBag.Title = "YeniDuyuru";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<br />
+<h2>Yeni Duyuru Ekle</h2>
+<br />
+<form class="form-group" method="post">
+
+    <p>Duyuru başlığı</p>
+
+    @Html.TextBoxFor(x => x.DuyuruBaslik, new { @class = "form-control" })
+
+    <br />
+
+    <p>Duyuru detayı</p>
+    @Html.TextAreaFor(x => x.DuyuruDetay, new { @class = "form-control", @id = "summernote" })
+    <p style="color:#ffa5a5">Detaylar bölümüne resim eklemeniz <b>önerilmemektedir</b>.</p>
+
+    <br />
+
+    <p>Tarih</p>
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control", @type = "date", required = "required" })<!--Burası tarih-->
+
+    <br />
+
+    <button class="btn btn-success" id="btn-duyuru-kaydet">Kaydet</button>
+    <script>
+        $('#btn-duyuru-kaydet').click(function () {
+            swal("", "", "success");
+
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    @*<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>*@
+    <script src="~/AdminLTE/summernote-lite.min.js"></script>
+
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Merhaba, burası detayların olacağı bölüm.',
+            tabsize: 2,
+            height: 500,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+</form>

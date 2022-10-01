@@ -1,0 +1,78 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Duyuru>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Duyurular Listesi</h2>
+<br />
+<table id="tbl_duyuru" class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width:15px"></th>
+
+            <th>Başlık</th>
+
+            <th>Tarih</th>
+
+            <th>Güncelle</th><!--burası eklenecek controller a-->
+
+            <th>Sil</th>
+
+            <th>Durum</th>
+
+            <th>Önizleme</th>
+        </tr>
+    </thead>
+    @foreach (var x in Model)
+    {
+<tr>
+    @if (x.Durum == true)
+    {
+        <td style="color:#23b526"><i class="far fa-eye"></i><i style="color:white;font-size:1px">ok</i></td>
+    }
+    else
+    {
+        <td style="color:#ea9022"><i class="fas fa-eye-slash"></i><i style="color:white;font-size:1px">pr</i></td>
+    }
+
+    <td>@x.DuyuruBaslik</td>
+
+    <td>@Convert.ToDateTime(@x.Tarih).ToString("dd/MM/yyyy")</td>
+
+    <td><a href="/Duyuru/DuyuruGetir/@x.DuyuruID" class="btn btn-warning">Güncelle</a></td>
+
+    @*<td><a href="/Cari/CariSil/@x.CariID" class="btn btn-danger">Sil</a></td>*@
+    <td>@Html.ActionLink("Sil", "DuyuruSil", new { id = x.DuyuruID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })</td>
+
+    <td>
+        @if (x.Durum == true)
+        {@Html.ActionLink("Gizle", "DuyuruGeriAl", new { id = x.DuyuruID }, new { @class = "btn btn-warning", onclick = "return confirm('Geri almak istediğinizden emin misiniz?')" })}
+    else
+    {@Html.ActionLink("Göster", "DuyuruGoster", new { id = x.DuyuruID }, new { @class = "btn btn-success", onclick = "return confirm('Tamamlamak istediğinizden emin misiniz?')" })}
+    </td>
+
+    <td><a href="/DuyuruDetayAdmin/Index/@x.DuyuruID" class="btn btn-info">Önizle</a></td>
+
+</tr>
+    }
+</table>
+<a href="/Duyuru/YeniDuyuru" class="btn btn-primary">Duyuru Ekle</a><!--Yeni duyuru-->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl_duyuru').DataTable({
+        "order": [[2, 'asc']],
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>
+

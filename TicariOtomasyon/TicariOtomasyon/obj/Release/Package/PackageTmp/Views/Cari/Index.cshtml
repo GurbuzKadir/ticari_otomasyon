@@ -1,0 +1,75 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Cariler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<table id="tbl_cari" class="table table-striped">
+    <thead>
+        <tr>
+            
+            @*<th>#</th>*@
+            
+            <th>Ad</th>
+            
+            <th>Soyad</th>
+            
+            <th>Şehir</th>
+            
+            <th>Mail</th>
+
+            <th>Telefon</th>
+
+            <th>Adres</th>
+            
+            <th>Sil</th>
+            
+            <th>Güncelle</th>
+            
+            <th>Detaylar</th>
+        </tr>
+    </thead>
+    @foreach (var x in Model)
+    {
+        <tr>
+            @*<td>@x.CariID</td>*@
+
+            <td>@x.CariAd</td>
+
+            <td>@x.CariSoyad</td>
+
+            <td>@x.CariSehir</td>
+
+            <td>@x.CariMail</td>
+            
+            <td>@x.CariTelefon</td>
+            
+            <td>@x.CariAdres</td>
+
+            @*<td><a href="/Cari/CariSil/@x.CariID" class="btn btn-danger">Sil</a></td>*@
+            <td>@Html.ActionLink("Sil", "CariSil", new { id = x.CariID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })</td>
+
+            <td><a href="/Cari/CariGetir/@x.CariID" class="btn btn-warning">Güncelle</a></td>
+
+            <td><a href="/Cari/MusteriSatis/@x.CariID" class="btn btn-info">Satışlar</a></td>
+        </tr>
+    }
+</table>
+<a href="/Cari/YeniCari" class="btn btn-primary">Cari Ekle</a>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl_cari').dataTable({
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>

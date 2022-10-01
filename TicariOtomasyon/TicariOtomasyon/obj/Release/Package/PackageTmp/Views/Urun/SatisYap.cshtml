@@ -1,0 +1,66 @@
+﻿@model TicariOtomasyon.Models.Siniflar.SatisHareket
+@{
+    ViewBag.Title = "SatisYap";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Satış Yap</h2>
+<br />
+<form class="form-group" method="post">
+
+    <p>Ürün</p>
+    <input type="text" name="Urunid" value="@ViewBag.dgr2" class="form-control" readonly style="width:10%;display:inline-flex" />
+    <input type="text" value="@ViewBag.dgr6" class="form-control" readonly style="width:89%;display:inline-flex;float:right"/>
+    <br />
+    <br />
+
+    <p>Cari</p>
+    @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+
+    <br />
+
+    <p>Personel</p>
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+
+    <br />
+
+    <p>Adet</p>
+    <input type="number" class="form-control" value="1" name="Adet" max="@ViewBag.dgr5" min="1" required placeholder="Adet" id="txt1" onchange="sum();" />
+
+
+
+    <p style="text-align:right;color:#808080">Stok miktarı : @ViewBag.dgr5</p>
+
+    <p>Fiyat</p>
+    <input type="text" name="Fiyat" value="@ViewBag.dgr3" class="form-control" id="txt2" onkeyup="sum();" />
+
+    <br />
+
+    <p>Toplam</p>
+    <input type="text" name="ToplamTutar" value="@ViewBag.dgr3" class="form-control" id="txt3" readonly />
+
+    <br />
+
+    <p>Tarih</p>
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control", @type = "date", required = "required" })<!--Burası tarih-->
+
+    <br />
+
+    @*<p>Tarih</p>
+        @Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })*@
+    <button class="btn btn-success">Satış yap</button>
+
+</form>
+<script>
+    function sum() {
+        var sayi1 = document.getElementById('txt1').value;
+        var sayi2 = document.getElementById('txt2').value;
+        var s1_r = sayi1.replace(",", ".");
+        var s2_r = sayi2.replace(",", ".");
+        var sonuc = parseFloat(s1_r) * parseFloat(s2_r);
+        if (!isNaN(sonuc)) {
+            document.getElementById('txt3').value = sonuc;
+        }
+    }
+</script>

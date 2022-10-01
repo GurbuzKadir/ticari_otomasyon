@@ -1,0 +1,53 @@
+﻿@model TicariOtomasyon.Models.Siniflar.Faturalar
+@{
+    ViewBag.Title = "FaturaEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Fatura Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    <p>Seri No</p>
+    @Html.TextBoxFor(x => x.FaturaSeriNo, new { @class = "form-control" })
+
+    <br />
+
+    <p>Sıra No</p>
+    @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control" })
+
+    <br />
+
+    <p>Tarih</p>
+    @Html.TextBoxFor(x => x.FaturaTarih, new { @class = "form-control", @type = "date", required = "required" })<!--Burası tarih--><!--Burası tarih-->
+
+    <br />
+
+    <p>Saat</p>
+    @Html.TextBoxFor(x => x.FaturaSaat, new { @class = "form-control", @type = "time" })
+
+    <br />
+
+    <p>Vergi Dairesi</p>
+    @Html.TextBoxFor(x => x.VergiDairesi, new { @class = "form-control" })
+
+    <br />
+
+    <p>Teslim eden</p>
+    @Html.TextBoxFor(x => x.TeslimEden, new { @class = "form-control" })
+
+    <br />
+
+    <p>Teslim alan</p>
+    @Html.TextBoxFor(x => x.TeslimAlan, new { @class = "form-control" })
+
+    <br />
+
+    <p>Toplam</p>
+    @Html.TextBoxFor(x => x.Toplam, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+<!--ürünlere fancybox eklenecek-->

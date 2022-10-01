@@ -1,0 +1,26 @@
+﻿@model TicariOtomasyon.Models.Siniflar.Kategori
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<br />
+<h2>Yeni Kategori Ekle</h2>
+<br />
+<form class="form-group" method="post">
+
+    <p>Kategori adı giriniz</p>
+
+    @Html.TextBoxFor(x => x.KategoriAdi, new { @class = "form-control" })
+
+    <br />
+    <button class="btn btn-success" id="btn-kategori-kaydet">Kaydet</button>
+    <script>
+        $('#btn-kategori-kaydet').click(function () {
+            swal("","","success");
+
+        });
+    </script>
+</form>
+

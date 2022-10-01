@@ -1,0 +1,47 @@
+﻿@model TicariOtomasyon.Models.Siniflar.Personel
+@{
+    ViewBag.Title = "PersonelEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Personel Ekle</h2>
+<br />
+@using (Html.BeginForm("PersonelEkle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<form class="form-group" method="post">
+    <p>Ad</p>
+    @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+
+    <br />
+
+    <p>Soyad</p>
+    @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+
+    <br />
+
+    <p>Telefon</p>
+    @Html.TextBoxFor(x => x.PersonelTelefon, new { @class = "form-control", maxlength = "10", placeholder = "554321456" })
+
+    <br />
+
+    <p>Adres</p>
+    @Html.TextBoxFor(x => x.PersonelAdres, new { @class = "form-control" })
+
+    <br />
+
+    <p>Görsel</p>
+    @*@Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })*@
+    
+    <input type="file" name="PersonelGorsel" class="form-control" />
+    <p style="color:#ff9937">Dosya sistemine yüklenen görseller sistemde büyük yer kaplar. <a href="https://compressjpeg.com/tr/" target="_blank">Buradan</a> görselleri sıkıştırıp yüklemeniz önerilir.</p>
+
+    <p>Departman</p>
+    @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+    <!--ürünlere fancybox eklenecek-->
+}

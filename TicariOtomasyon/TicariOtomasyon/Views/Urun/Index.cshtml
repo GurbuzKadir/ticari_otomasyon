@@ -1,0 +1,104 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.js"></script>
+<br />
+<table id="urun" class="table table-striped">
+    <thead>
+        <tr>
+            @*<th>#</th>*@
+            
+            <th>Ürün</th>
+            
+            <th>Marka</th>
+            
+            <th>Stok</th>
+            
+            <th>Alış Fiyat</th>
+            
+            <th>Satış Fiyat</th>
+            
+            @*<th>Durum</th>*@
+            
+            <th>Kategori</th>
+            
+            <th>Görsel</th>
+            
+            <th>Sil</th>
+            
+            <th>Güncelle</th>
+            
+            <th>Detay</th>
+
+            <th>Satış</th>
+        </tr>
+    </thead>
+    @foreach (var u in Model)
+    {
+<tr>
+    @*<td>
+            @u.UrunID
+        </td>*@
+    <td>
+        @u.UrunAdi
+    </td>
+    <td>
+        @u.Marka
+    </td>
+    <td>
+        @u.Stok
+    </td>
+    <td>
+        @u.AlisFiyat ₺
+    </td>
+    <td>
+        @u.SatisFiyat ₺
+    </td>
+    @*<td>
+            @u.Durum
+        </td>*@
+    <td>
+        @u.Kategori.KategoriAdi
+    </td>
+    <td><a data-fancybox="gallery" target="_blank" class="btn btn-dark" href="@u.UrunGorsel">Resim</a></td><!--Burası fotoğraf popup açma kodu-->
+    <td>
+        @*<a href="/Urun/UrunSil/@u.UrunID" class="btn btn-danger">Sil</a>*@
+        @Html.ActionLink("Sil", "UrunSil", new { id = u.UrunID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })
+    </td>
+    <td>
+        <a href="/Urun/UrunGetir/@u.UrunID" class="btn btn-warning">Güncelle</a>
+    </td>
+
+    <td>
+        <a href="/UrunDetay/Index/@u.UrunID" class="btn btn-info">Detay</a>
+    </td>
+
+    <td>
+        <a href="/Urun/SatisYap/@u.UrunID" class="btn btn-dark">Satış</a>
+    </td>
+</tr>
+    }
+</table>
+<a href="/Urun/YeniUrun" class="btn btn-primary">Ürün Ekle</a>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#urun').dataTable({
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>

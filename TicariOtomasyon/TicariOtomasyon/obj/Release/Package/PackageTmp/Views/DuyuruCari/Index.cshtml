@@ -1,0 +1,50 @@
+﻿@using TicariOtomasyon.Models.Siniflar;
+@model List<Duyuru>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+}
+<br />
+<h2>Duyurular</h2>
+<br />
+<table id="tbl_duyuru" class="table table-hover">
+    <thead>
+        <tr>
+
+            <th>Başlık</th>
+
+            <th>Tarih</th>
+
+            <th>Önizleme</th>
+        </tr>
+    </thead>
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td>@x.DuyuruBaslik</td>
+
+            <td>@Convert.ToDateTime(@x.Tarih).ToString("dd/MM/yyyy")</td>
+
+            <td><a href="/DuyuruDetayCari/Index/@x.DuyuruID" class="btn btn-info">Önizle</a></td>
+
+        </tr>
+    }
+</table>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl_duyuru').DataTable({
+        "order": [[2, 'asc']],
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>
+

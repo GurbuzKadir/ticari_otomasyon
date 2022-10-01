@@ -1,0 +1,49 @@
+﻿@using TicariOtomasyon.Models.Siniflar
+@model List<KargoTakip>
+@{
+    ViewBag.Title = "KargoTakip";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<table id="tbl_kargotakip" class="table table-striped">
+    <thead>
+        <tr>
+
+            @*<th>#</th>*@
+
+            <th>Açıklama</th>
+
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    @foreach (var x in Model)
+    {
+        <tr>
+            @*<td>@x.CariID</td>*@
+
+            <td>@x.Aciklama</td>
+
+            <td>@Convert.ToDateTime(x.Tarih).ToString("dd/MM/yyyy")</td>
+
+            @*<td><a href="/Cari/MusteriSatis/@x.CariID" class="btn btn-info">Satışlar</a></td>*@
+        </tr>
+    }
+</table>
+@*<a href="/Cari/YeniCari" class="btn btn-primary">Cari Ekle</a>*@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl_kargotakip').dataTable({
+        "order": [[1, 'asc']],//burada tarihe göre sıralama yapılmıştır.
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>
